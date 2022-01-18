@@ -15,11 +15,12 @@ const App: React.FC = ({children}) => {
 
   return (
     <>
+      <pointLight position={[10, 10, 10]} />
       {enableAmbientLight && <ambientLight intensity={0.5}/>}
       {enableCube && (
         <mesh ref={cubeRef} castShadow={true} position={[0, 0.25, 0]}>
           <boxGeometry args={[0.5, 0.5, 0.5]}/>
-          <meshStandardMaterial/>
+          <meshStandardMaterial color={'orange'}/>
         </mesh>
       )}
     </>
