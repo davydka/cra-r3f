@@ -14,7 +14,7 @@ const LControl = () => {
       ref={control}
       maxDistance={noLimit ? 1000 : 40}
       minDistance={1.8}
-      maxPolarAngle={Math.PI / 2 - 0.05}
+      // maxPolarAngle={Math.PI / 2 - 0.05} // prevent user from looking below
       enablePan={false}
       //
       addEventListener={undefined}
