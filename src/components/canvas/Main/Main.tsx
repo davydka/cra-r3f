@@ -7,10 +7,14 @@ import { animated } from '@react-spring/three'
 
 import BaseGLTF from '../BaseGLTF/BaseGLTF'
 
+import {isiOS} from '../../../helpers/browsers'
+
 const FLOOR_POSITION = new THREE.Vector3(0, 0, 0)
 const FLOOR_ROTATION = new THREE.Euler(-Math.PI / 2, 0, 0)
 const FLOOR_SIZE = 40
 const URL = `${process.env.PUBLIC_URL}/assets/Animation_Node_01.gltf`
+
+const SHADOW_MAP_SIZE = isiOS() ? 1024 : 4096
 
 const Main: React.FC<Partial<GroupProps>> = (props) => {
   const cubeRef = useRef<THREE.Mesh>(null)
@@ -29,14 +33,14 @@ const Main: React.FC<Partial<GroupProps>> = (props) => {
 
   useFrame(() => {
     if (!cubeRef.current) return
-    cubeRef.current.rotation.y += 0.01;
+    cubeRef.current.rotation.y += 0.01; // note: naive animation runs differently at 30/60/120 fps
   });
 
   return (
     <group {...props}>
       <pointLight
-        shadow-mapSize-height={4096}
-        shadow-mapSize-width={4096}
+        shadow-mapSize-height={SHADOW_MAP_SIZE}
+        shadow-mapSize-width={SHADOW_MAP_SIZE}
         castShadow={true}
         ref={pointLightRef1}
         position={[6, 4, 8]}
@@ -45,8 +49,8 @@ const Main: React.FC<Partial<GroupProps>> = (props) => {
       />
 
       <pointLight
-        shadow-mapSize-height={4096}
-        shadow-mapSize-width={4096}
+        shadow-mapSize-height={SHADOW_MAP_SIZE}
+        shadow-mapSize-width={SHADOW_MAP_SIZE}
         castShadow={true}
         ref={pointLightRef2}
         position={[-6, 4, 8]}
@@ -55,9 +59,9 @@ const Main: React.FC<Partial<GroupProps>> = (props) => {
       />
 
       <pointLight
-        shadow-mapSize-height={2048} // lower value
-        shadow-mapSize-width={2048} // lower value
-        castShadow={true}
+        shadow-mapSize-height={1024} // lower value
+        shadow-mapSize-width={1024} // lower value
+        // castShadow={true}
         ref={pointLightRef3}
         position={[0, -4, 0]}
         intensity={1}
