@@ -1,7 +1,9 @@
 import React, { Suspense, useEffect, useRef, useState } from 'react';
 import { Canvas } from '@react-three/fiber'
-import { OrbitControls, Preload } from '@react-three/drei'
+import { OrbitControls, Preload, Stats } from '@react-three/drei'
 import { animated, config, useSpring } from 'react-spring'
+
+import {env} from '../../../constants';
 
 import './style.module.scss';
 
@@ -66,6 +68,7 @@ const Layout: React.FC = ({children}) => {
         <Suspense fallback={null}>
           <LControl />
           <Preload all />
+          {process.env.NODE_ENV !== env.prod && <Stats showPanel={0} className="stats" />}
           {children}
         </Suspense>
       </Canvas>
