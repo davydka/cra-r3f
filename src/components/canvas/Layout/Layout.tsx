@@ -43,6 +43,7 @@ const Layout: React.FC = ({children}) => {
 
   return (
     <animated.div
+      className="app"
       style={{
         backgroundColor: 'black',
         position: 'absolute',
@@ -51,7 +52,6 @@ const Layout: React.FC = ({children}) => {
         height: '100%',
         opacity
       }}
-      className="app"
     >
       <Canvas
         camera={{ position: [0, 2, 12], fov: 35 }}
