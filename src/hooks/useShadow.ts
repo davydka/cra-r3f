@@ -12,6 +12,7 @@ const useShadow = ({scene}: Props) => {
     scene.traverse((node) => {
       if ((node as Mesh).isMesh) {
         node.castShadow = true;
+        node.receiveShadow = true;
       }
     });
 

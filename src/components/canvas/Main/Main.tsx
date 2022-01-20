@@ -35,8 +35,8 @@ const Main: React.FC = ({children}) => {
   return (
     <>
       <pointLight
-        shadow-mapSize-height={512}
-        shadow-mapSize-width={512}
+        shadow-mapSize-height={4096}
+        shadow-mapSize-width={4096}
         castShadow={true}
         ref={pointLightRef1}
         position={[6, 4, 8]}
@@ -45,8 +45,8 @@ const Main: React.FC = ({children}) => {
       />
 
       <pointLight
-        shadow-mapSize-height={512}
-        shadow-mapSize-width={512}
+        shadow-mapSize-height={4096}
+        shadow-mapSize-width={4096}
         castShadow={true}
         ref={pointLightRef2}
         position={[-6, 4, 8]}
@@ -55,8 +55,8 @@ const Main: React.FC = ({children}) => {
       />
 
       <pointLight
-        shadow-mapSize-height={512}
-        shadow-mapSize-width={512}
+        shadow-mapSize-height={2048} // lower value
+        shadow-mapSize-width={2048} // lower value
         castShadow={true}
         ref={pointLightRef3}
         position={[0, -4, 0]}
@@ -67,13 +67,13 @@ const Main: React.FC = ({children}) => {
       {enableAmbientLight && <ambientLight intensity={0.15}/>}
 
       {enableCube && (
-        <mesh ref={cubeRef} castShadow={true} position={[0, 1, 0]}>
+        <mesh ref={cubeRef} castShadow={true} receiveShadow={true} position={[0, 1, 0]}>
           <boxGeometry args={[0.5, 0.5, 0.5]}/>
           <meshStandardMaterial color={'orange'}/>
         </mesh>
       )}
 
-      <BaseGLTF url={URL} position={new Vector3(0, 0.3, 0)}/>
+      <BaseGLTF url={URL} position={new Vector3(0, 0.301, 0)}/>
 
       <animated.group
         position={FLOOR_POSITION}
