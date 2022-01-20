@@ -61,7 +61,7 @@ const Main: React.FC = ({children}) => {
         ref={pointLightRef3}
         position={[0, -4, 0]}
         intensity={1}
-        distance={12}
+        distance={45}
       />
 
       {enableAmbientLight && <ambientLight intensity={0.15}/>}
