@@ -1,11 +1,11 @@
 import React, {useEffect} from 'react'
 import {useGLTF, useAnimations} from '@react-three/drei'
 import * as THREE from 'three';
-import {AnimationAction} from 'three';
+import {AnimationAction, Object3D} from 'three';
 
 import useShadow from '../../../hooks/useShadow'
 
-interface Props {
+interface Props extends Partial<Object3D> {
   url: string
 }
 
