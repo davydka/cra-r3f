@@ -25,7 +25,7 @@ const LControl = () => {
   )
 }
 
-const App: React.FC = ({children}) => {
+const Layout: React.FC = ({children}) => {
   const [loaded, setLoaded] = useState(false)
   const loadTimeout: { current: NodeJS.Timeout | null } = useRef(null)
 
@@ -73,4 +73,4 @@ const App: React.FC = ({children}) => {
   );
 }
 
-export default App;
+export default Layout;
