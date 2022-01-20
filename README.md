@@ -19,6 +19,7 @@ See https://ffmpeg.org/ffmpeg-all.html#Video-size
 ## Useful GLTF tool
 This basically doesn't work for non-linea animations (NLA), but is shows some potential.
 * https://github.com/pmndrs/gltfjsx
+* also https://gltf.pmnd.rs/
     * cd `public/assets`
     * `npx gltfjsx stage.gltf --shadows`
     * `npx gltfjsx kid.gltf --shadows`
