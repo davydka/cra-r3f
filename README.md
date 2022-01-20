@@ -1,8 +1,36 @@
-# maybe
+# CRA-R3F
 
-https://my.zap.works/projects/
+## MP3 Encoding for good scrubbing/CDG sync
+* `ffmpeg -i input.mp3 -vn -ar 44100 -ac 2 -b:a 192k output.mp3`
 
+## MP4 Encoding for good playback
+See https://ffmpeg.org/ffmpeg-all.html#Video-size
+* `ffmpeg -i input.mov -an -s hd720 -movflags faststart output.mp4` // 1280x720
+* `ffmpeg -i input.mov -an -s hd480 -movflags faststart output.mp4` // 852x480
+* `ffmpeg -i input.mov -an -s '426x240' -movflags faststart output.mp4`
+* `for i in *.mp4; do ffmpeg -i "$i" -an -s hd480 -movflags faststart "${i%.*}-rev-opt.mp4"; done`
+* `for i in *.mp4; do ffmpeg -i "$i" -an -s '426x240' -movflags faststart "${i%.*}-rev-opt-ios.mp4"; done`
 
+## Fix GLTF for Safari
+* `npx @gltf-transform/cli prune ./public/assets/kid-all.gltf ./public/assets/kid-all-processed.gltf`
+
+---
+
+## Useful GLTF tool
+This basically doesn't work for non-linea animations (NLA), but is shows some potential.
+* https://github.com/pmndrs/gltfjsx
+    * cd `public/assets`
+    * `npx gltfjsx stage.gltf --shadows`
+    * `npx gltfjsx kid.gltf --shadows`
+    * change file path to include `assets/`
+    * rename to `jsx`
+    * move to `components/canvas`
+
+# Maybe later
+AR/VR + THREE.js paid library (hobby license is free)
+* https://my.zap.works/projects/
+
+---
 
 
 
