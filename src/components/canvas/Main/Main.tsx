@@ -1,7 +1,7 @@
 import React, {useRef, useState} from 'react';
 import * as THREE from 'three';
 import {PointLightHelper, Vector3} from 'three'
-import {useFrame} from '@react-three/fiber'
+import {GroupProps, useFrame} from '@react-three/fiber'
 import {Circle, GradientTexture, useHelper} from '@react-three/drei'
 import { animated } from '@react-spring/three'
 
@@ -12,7 +12,7 @@ const FLOOR_ROTATION = new THREE.Euler(-Math.PI / 2, 0, 0)
 const FLOOR_SIZE = 40
 const URL = `${process.env.PUBLIC_URL}/assets/Animation_Node_01.gltf`
 
-const Main: React.FC = ({children}) => {
+const Main: React.FC<Partial<GroupProps>> = (props) => {
   const cubeRef = useRef<THREE.Mesh>(null)
   const [enableCube] = useState(true)
   const [enableAmbientLight] = useState(false)
@@ -33,7 +33,7 @@ const Main: React.FC = ({children}) => {
   });
 
   return (
-    <>
+    <group {...props}>
       <pointLight
         shadow-mapSize-height={4096}
         shadow-mapSize-width={4096}
@@ -100,7 +100,7 @@ const Main: React.FC = ({children}) => {
       </animated.group>
 
       {enableFloorHelpers && <gridHelper args={[FLOOR_SIZE, FLOOR_SIZE, FLOOR_SIZE]} />}
-    </>
+    </group>
   );
 }
 
