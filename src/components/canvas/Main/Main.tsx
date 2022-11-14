@@ -1,9 +1,10 @@
-import React, {useRef, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import * as THREE from 'three';
 import {PointLightHelper, Vector3} from 'three'
 import {GroupProps, useFrame} from '@react-three/fiber'
 import {Circle, GradientTexture, useHelper} from '@react-three/drei'
 import { animated } from '@react-spring/three'
+import {useAppDispatch, useAppSelector} from '../../../hooks/app'
 
 import BaseGLTF from '../BaseGLTF/BaseGLTF'
 
@@ -16,20 +17,33 @@ const URL = `${process.env.PUBLIC_URL}/assets/Animation_Node_01.gltf`
 
 const SHADOW_MAP_SIZE = isiOS() ? 1024 : 4096
 
-const Main: React.FC<Partial<GroupProps>> = (props) => {
+interface Props {
+  enableAmbientLight: boolean;
+  enableCube: boolean;
+  enableFloorHelpers: boolean;
+}
+
+const Main: React.FC<Props> = ({enableAmbientLight, enableCube, enableFloorHelpers, ...rest}) => {
   const cubeRef = useRef<THREE.Mesh>(null)
-  const [enableCube] = useState(true)
-  const [enableAmbientLight] = useState(false)
-  const [enableFloorHelpers] = useState(false)
+  // const [enableCube] = useState(true)
+  // const [enableAmbientLight, setAmbientLight] = useState(true)
+  // const [enableFloorHelpers] = useState(false)
+
+  // const {enableAmbientLight: ambientLightfromState} = useAppSelector((state) => state.canvas);
+  // const dispatch = useAppDispatch();
+
+  // useEffect(() => {
+  //   setAmbientLight(ambientLightfromState)
+  // }, [ambientLightfromState]);
 
   const pointLightRef1 = useRef()
-  useHelper(pointLightRef1, PointLightHelper, 4, 'teal')
+  useHelper(pointLightRef1, PointLightHelper, 4, 'teal') // color only affects helper
 
   const pointLightRef2 = useRef()
-  useHelper(pointLightRef2, PointLightHelper, 4, 'GoldenRod')
+  useHelper(pointLightRef2, PointLightHelper, 4, 'GoldenRod') // color only affects helper
 
   const pointLightRef3 = useRef()
-  useHelper(pointLightRef3, PointLightHelper, 4, 'red')
+  useHelper(pointLightRef3, PointLightHelper, 4, 'red') // color only affects helper
 
   useFrame(() => {
     if (!cubeRef.current) return
@@ -37,7 +51,7 @@ const Main: React.FC<Partial<GroupProps>> = (props) => {
   });
 
   return (
-    <group {...props}>
+    <group {...rest}>
       <pointLight
         shadow-mapSize-height={SHADOW_MAP_SIZE}
         shadow-mapSize-width={SHADOW_MAP_SIZE}

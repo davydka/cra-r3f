@@ -14,7 +14,7 @@ const LControl = () => {
   return (
     <OrbitControls
       ref={control}
-      maxDistance={noLimit ? 1000 : 40}
+      maxDistance={noLimit ? 900 : 40}
       minDistance={1.8}
       // maxPolarAngle={Math.PI / 2 - 0.05} // prevent user from looking below
       enablePan={false}
@@ -43,16 +43,19 @@ const Layout: React.FC = ({children}) => {
     config: config.default,
   })
 
-  return (
+  // @ts-ignore
+    // @ts-ignore
+    return (
     <animated.div
-      className="app"
+      className="layout"
       style={{
-        backgroundColor: 'black',
-        position: 'absolute',
+        // backgroundColor: 'black',
+        position: 'fixed',
         top: 0,
         width: '100%',
         height: '100%',
-        opacity
+        opacity,
+        zIndex: 0
       }}
     >
       <Canvas
@@ -62,7 +65,7 @@ const Layout: React.FC = ({children}) => {
         dpr={typeof window === 'undefined' ? 2 : window.devicePixelRatio}
         shadows={true}
         style={{
-          backgroundColor: 'black',
+          // backgroundColor: 'black',
         }}
       >
         <Suspense fallback={null}>
