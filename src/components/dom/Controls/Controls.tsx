@@ -1,21 +1,46 @@
-import React from 'react';
+import React, {useEffect, useRef} from 'react';
 import {useAppDispatch, useAppSelector} from '../../../hooks/app'
-import {decrement, increment} from '../../../features/counter/counterSlice';
+import {decrement, increment, toggleIsPlaying} from '../../../features/shared/controls/controlsSlice';
 import {toggleAmbientLight, toggleCube, toggleFloorHelpers} from '../../../features/canvas/canvasSlice';
 // import styles from './Counter.module.css';
 
-const Counter: React.FC = () => {
-    const count = useAppSelector((state) => state.counter.value);
+const Controls: React.FC = () => {
+    const {value: count, isPlaying} = useAppSelector((state) => state.controls);
     const {enableAmbientLight, enableCube, enableFloorHelpers} = useAppSelector((state) => state.canvas);
     const dispatch = useAppDispatch();
 
+    // const handleKey: { current: any } = useRef(null);
+    // useEffect(() => {
+    //     handleKey.current = (e: KeyboardEvent) => {
+    //         console.log('e', e)
+    //         if (e.code !== 'Space') {
+    //             return
+    //         }
+    //         // setFrameloop(!frameloop)
+    //         console.log('hello')
+    //         toggleIsPlaying()
+    //     }
+    //     window.addEventListener('keydown', handleKey.current)
+    //
+    //     return () => handleKey.current && window.removeEventListener('keydown', handleKey.current)
+    // }, [handleKey])
+
     return (
-        <div style={{
+        <div
+          data-auto='Controls'
+          style={{
             display: 'flex',
             flexDirection: 'column',
             margin: '20px',
             border: '1px solid black'
         }}>
+            <button
+              aria-label="Play"
+              onClick={() => dispatch(toggleIsPlaying())}
+            >
+                {isPlaying ? 'Pause': 'Play'}
+            </button>
+
             <div style={{padding: '4px'}}>
                 <button
                     aria-label="Increment value"
@@ -47,4 +72,4 @@ const Counter: React.FC = () => {
     )
 };
 
-export default Counter;
+export default Controls;

@@ -1,10 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
-import counterReducer from '../features/counter/counterSlice';
+import controlsReducer from '../features/shared/controls/controlsSlice';
 import canvasReducer from '../features/canvas/canvasSlice';
 
 const store = configureStore({
     reducer: {
-        counter: counterReducer,
+        controls: controlsReducer,
         canvas: canvasReducer,
     },
 });

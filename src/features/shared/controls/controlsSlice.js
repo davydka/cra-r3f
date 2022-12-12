@@ -1,9 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-export const counterSlice = createSlice({
-    name: 'counter',
+export const controlsSlice = createSlice({
+    name: 'controls',
     initialState: {
         value: 0,
+        isPlaying: false,
     },
     reducers: {
         increment: (state) => {
@@ -19,10 +20,15 @@ export const counterSlice = createSlice({
         incrementByAmount: (state, action) => {
             state.value += action.payload
         },
+        toggleIsPlaying: (state) => {
+            console.log('state.isPlaying', state.isPlaying)
+            console.log('state.isPlaying', !state.isPlaying)
+            state.isPlaying = !state.isPlaying
+        }
     },
 })
 
 // Action creators are generated for each case reducer function
-export const { increment, decrement, incrementByAmount } = counterSlice.actions
+export const { increment, decrement, incrementByAmount, toggleIsPlaying } = controlsSlice.actions
 
-export default counterSlice.reducer
+export default controlsSlice.reducer

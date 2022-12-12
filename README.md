@@ -1,7 +1,10 @@
 # CRA-R3F
 
-# Next steps
+# redux next steps
+* move keypress to store
+  * wire it up to Space -> isPLaying
 
+# Next steps
 * add second/helper camera
 * make bezier curve component
   * https://www.twitch.tv/videos/1275586639
