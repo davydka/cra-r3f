@@ -31,12 +31,28 @@ const Layout: React.FC = ({children}) => {
   const [loaded, setLoaded] = useState(false)
   const loadTimeout: { current: NodeJS.Timeout | null } = useRef(null)
 
+   const [frameloop, setFrameloop] = useState(false)
+
   // todo: setup a real loader
   useEffect(() => {
     loadTimeout.current = setTimeout(() => {
       setLoaded(true)
     }, 200)
   }, [])
+
+  const handleKey: { current: any } = useRef(null);
+
+  useEffect(() => {
+    handleKey.current = (e: KeyboardEvent) => {
+      if (e.code !== 'Space') {
+        return
+      }
+      setFrameloop(!frameloop)
+    }
+    window.addEventListener('keydown', handleKey.current)
+
+    return () => handleKey.current && window.removeEventListener('keydown', handleKey.current)
+  }, [frameloop, handleKey])
 
   const { opacity } = useSpring({
     opacity: loaded ? 1 : 0,
@@ -58,7 +74,20 @@ const Layout: React.FC = ({children}) => {
         zIndex: 0
       }}
     >
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'center'
+        }}
+      >
+        <button
+          onClick={() => setFrameloop(!frameloop)}
+        >
+          {frameloop ? 'pause' : 'play'}
+        </button>
+      </div>
       <Canvas
+        frameloop={frameloop ? 'always' : 'never'}
         camera={{ position: [0, 2, 12], fov: 35 }}
         // gl={{ antialias: false }}
         mode='concurrent'

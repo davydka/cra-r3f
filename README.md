@@ -1,5 +1,15 @@
 # CRA-R3F
 
+# Next steps
+
+* add second/helper camera
+* make bezier curve component
+  * https://www.twitch.tv/videos/1275586639
+  * https://000680810.codepen.website/scripts/transformSVGPath.js
+  * https://github.com/zz85/threejs-path-flow
+
+---
+
 ## MP3 Encoding for good scrubbing/CDG sync
 * `ffmpeg -i input.mp3 -vn -ar 44100 -ac 2 -b:a 192k output.mp3`
 
