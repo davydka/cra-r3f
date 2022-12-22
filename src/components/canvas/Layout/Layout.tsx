@@ -47,6 +47,7 @@ const Layout: React.FC = ({children}) => {
 
   const { opacity } = useSpring({
     opacity: loaded ? 1 : 0,
+    // opacity: 1,
     config: config.default,
   })
 

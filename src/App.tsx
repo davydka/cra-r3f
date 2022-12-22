@@ -9,6 +9,7 @@ import './App.css';
 
 const App: React.FC = ({children}) => {
   const {enableAmbientLight, enableCube, enableFloorHelpers} = useAppSelector((state) => state.canvas);
+  const {isPlaying} = useAppSelector((state) => state.controls)
 
   return (
       <div style={{
@@ -17,7 +18,7 @@ const App: React.FC = ({children}) => {
       }}>
         <Layout>
           <Main enableAmbientLight={enableAmbientLight} enableCube={enableCube}
-                enableFloorHelpers={enableFloorHelpers}/>
+                enableFloorHelpers={enableFloorHelpers} isPlaying={isPlaying}/>
         </Layout>
 
           <div style={{ position: 'relative' }}>

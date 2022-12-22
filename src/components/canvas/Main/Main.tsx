@@ -21,20 +21,11 @@ interface Props {
   enableAmbientLight: boolean;
   enableCube: boolean;
   enableFloorHelpers: boolean;
+  isPlaying: boolean;
 }
 
-const Main: React.FC<Props> = ({enableAmbientLight, enableCube, enableFloorHelpers, ...rest}) => {
+const Main: React.FC<Props> = ({enableAmbientLight, enableCube, enableFloorHelpers, isPlaying, ...rest}) => {
   const cubeRef = useRef<THREE.Mesh>(null)
-  // const [enableCube] = useState(true)
-  // const [enableAmbientLight, setAmbientLight] = useState(true)
-  // const [enableFloorHelpers] = useState(false)
-
-  // const {enableAmbientLight: ambientLightfromState} = useAppSelector((state) => state.canvas);
-  // const dispatch = useAppDispatch();
-
-  // useEffect(() => {
-  //   setAmbientLight(ambientLightfromState)
-  // }, [ambientLightfromState]);
 
   const pointLightRef1 = useRef()
   useHelper(pointLightRef1, PointLightHelper, 4, 'teal') // color only affects helper
@@ -46,7 +37,7 @@ const Main: React.FC<Props> = ({enableAmbientLight, enableCube, enableFloorHelpe
   useHelper(pointLightRef3, PointLightHelper, 4, 'red') // color only affects helper
 
   useFrame(() => {
-    if (!cubeRef.current) return
+    if (!cubeRef.current || !isPlaying) return
     cubeRef.current.rotation.y += 0.01; // note: naive animation runs differently at 30/60/120 fps
   });
 
@@ -91,7 +82,7 @@ const Main: React.FC<Props> = ({enableAmbientLight, enableCube, enableFloorHelpe
         </mesh>
       )}
 
-      <BaseGLTF url={URL} position={new Vector3(0, 0.301, 0)}/>
+      <BaseGLTF url={URL} position={new Vector3(0, 0.301, 0)} isPlaying={isPlaying} />
 
       <animated.group
         position={FLOOR_POSITION}

@@ -1,11 +1,21 @@
 # CRA-R3F
 
 # redux next steps
+* wire-up `isPlaying` to GLTF animation
+  * harder than it looks
+  * take your time to do it nice/sane
+
+
 * ~~move keypress to store~~
   * ~~wire-up to Space -> isPlaying~~
-  * debug scroll intertia when enabling/disabling orbitcontrols
-    * disable scroll inertia on zoom only? (not panning)
-  * wire-upp isPlaying to Spring animation (enable/disable)
+
+
+* debug scroll intertia when enabling/disabling orbitcontrols
+  * meh, this doesn't seem super important right now
+  * disable scroll inertia on zoom only? (not panning)
+
+
+* ~~wire-up isPlaying to helper animation (enable/disable)~~
 
 # Next steps
 * add second/helper camera
