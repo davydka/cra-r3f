@@ -11,7 +11,10 @@ const App: React.FC = ({children}) => {
   const {enableAmbientLight, enableCube, enableFloorHelpers} = useAppSelector((state) => state.canvas);
 
   return (
-      <div>
+      <div style={{
+        backgroundColor: "black",
+
+      }}>
         <Layout>
           <Main enableAmbientLight={enableAmbientLight} enableCube={enableCube}
                 enableFloorHelpers={enableFloorHelpers}/>

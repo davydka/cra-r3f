@@ -1,11 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit';
 import controlsReducer from '../features/shared/controls/controlsSlice';
+import keyPressReducer from '../features/shared/keyPressSlice';
 import canvasReducer from '../features/canvas/canvasSlice';
 
 const store = configureStore({
     reducer: {
         controls: controlsReducer,
         canvas: canvasReducer,
+        keyPress: keyPressReducer
     },
 });
 

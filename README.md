@@ -1,8 +1,11 @@
 # CRA-R3F
 
 # redux next steps
-* move keypress to store
-  * wire it up to Space -> isPLaying
+* ~~move keypress to store~~
+  * ~~wire-up to Space -> isPlaying~~
+  * debug scroll intertia when enabling/disabling orbitcontrols
+    * disable scroll inertia on zoom only? (not panning)
+  * wire-upp isPlaying to Spring animation (enable/disable)
 
 # Next steps
 * add second/helper camera

@@ -9,13 +9,16 @@ import {env} from '../../../constants';
 
 import './style.module.scss';
 
-const LControl = () => {
+const LControl = ({enabled}: {enabled?: boolean}) => {
   const control = useRef(null)
-  const noLimit = true;
+  const noLimit = true
 
   return (
     <OrbitControls
       ref={control}
+      enabled={enabled}
+      // enableZoom={enabled} // todo: debugging scroll inertia when toggling enabled/disable
+      // enableRotate={enabled} // todo: debugging scroll inertia when toggling enabled/disable
       maxDistance={noLimit ? 900 : 40}
       minDistance={1.8}
       // maxPolarAngle={Math.PI / 2 - 0.05} // prevent user from looking below
@@ -52,7 +55,7 @@ const Layout: React.FC = ({children}) => {
     <animated.div
       className="layout"
       style={{
-        // backgroundColor: 'black',
+        backgroundColor: 'black',
         position: 'fixed',
         top: 0,
         width: '100%',
@@ -62,7 +65,6 @@ const Layout: React.FC = ({children}) => {
       }}
     >
       <Canvas
-        // frameloop={frameloop ? 'always' : 'never'}
         frameloop={isPlaying ? 'always' : 'never'}
         camera={{ position: [0, 2, 12], fov: 35 }}
         // gl={{ antialias: false }}
@@ -70,11 +72,11 @@ const Layout: React.FC = ({children}) => {
         dpr={typeof window === 'undefined' ? 2 : window.devicePixelRatio}
         shadows={true}
         style={{
-          // backgroundColor: 'black',
+          backgroundColor: 'black',
         }}
       >
         <Suspense fallback={null}>
-          <LControl />
+          <LControl enabled={isPlaying} />
           <Preload all />
           {process.env.NODE_ENV !== env.prod && <Stats showPanel={0} className="stats" />}
           {children}

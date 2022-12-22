@@ -4,7 +4,7 @@ export const controlsSlice = createSlice({
     name: 'controls',
     initialState: {
         value: 0,
-        isPlaying: false,
+        isPlaying: true,
     },
     reducers: {
         increment: (state) => {
@@ -21,8 +21,8 @@ export const controlsSlice = createSlice({
             state.value += action.payload
         },
         toggleIsPlaying: (state) => {
-            console.log('state.isPlaying', state.isPlaying)
-            console.log('state.isPlaying', !state.isPlaying)
+            // console.log('state.isPlaying', state.isPlaying)
+            // console.log('state.isPlaying', !state.isPlaying)
             state.isPlaying = !state.isPlaying
         }
     },
